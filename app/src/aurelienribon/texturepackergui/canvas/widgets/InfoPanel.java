@@ -3,13 +3,13 @@ package aurelienribon.texturepackergui.canvas.widgets;
 import aurelienribon.texturepackergui.canvas.Assets;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Scaling;
 
-public class InfoPanel extends WidgetGroup {
-    public static final float WIDTH = 112f;
-    public static final float HEIGHT = 60f;
+public class InfoPanel extends Container<VerticalGroup> {
     private final Label lblCurrentPage;
     private final Label lblZoom;
 
@@ -18,23 +18,13 @@ public class InfoPanel extends WidgetGroup {
     public InfoPanel(Assets assets) {
         setTouchable(Touchable.disabled);
 
-        // Background
-        {
-            Image imgBackground = new Image(assets.getWhiteTex());
-            imgBackground.setScaling(Scaling.stretch);
-            imgBackground.setColor(new Color(0x2a3b56aa));
-
-            Container container = new Container<>(imgBackground);
-            container.setFillParent(true);
-            container.fill();
-            addActor(container);
-        }
+        setBackground(new TextureRegionDrawable(assets.getWhiteTex()).tint(new Color(0x2a3b56aa)));
 
         // Labels
         {
             VerticalGroup verticalGroup = new VerticalGroup();
             verticalGroup.align(Align.left);
-            verticalGroup.space(4f);
+            verticalGroup.space(0f);
 
             Label.LabelStyle labelStyle = new Label.LabelStyle(assets.getFont(), Color.WHITE);
             lblCurrentPage = new Label("", labelStyle);
@@ -43,30 +33,14 @@ public class InfoPanel extends WidgetGroup {
             verticalGroup.addActor(lblCurrentPage);
             verticalGroup.addActor(lblZoom);
 
-            Container container = new Container<>(verticalGroup);
-            container.setFillParent(true);
-            container.left();
-            container.padLeft(10f);
-            addActor(container);
+            setActor(verticalGroup);
         }
 
-        updatePagesTest();
+        pad(4f, 12f, 4f, 12f);
+
+        updatePagesText();
         setZoomLevel(100f);
     }
-
-//    @Override
-//    public void act(float delta) {
-//        super.act(delta);
-//
-//        int fps = Gdx.graphics.getFramesPerSecond();
-//        lblFps.setText("FPS: " + fps);
-//    }
-
-    @Override
-    public float getPrefWidth() { return WIDTH; }
-
-    @Override
-    public float getPrefHeight() { return HEIGHT; }
 
     public void setZoomLevel(float zoom) {
         lblZoom.setText(String.format("Zoom: %.0f%%", zoom));
@@ -74,15 +48,15 @@ public class InfoPanel extends WidgetGroup {
 
     public void setPagesAmount(int pagesAmount) {
         this.pagesAmount = pagesAmount;
-        updatePagesTest();
+        updatePagesText();
     }
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
-        updatePagesTest();
+        updatePagesText();
     }
 
-    private void updatePagesTest() {
+    private void updatePagesText() {
         if (pagesAmount <= 0) {
             lblCurrentPage.setText("No page to show");
         } else {

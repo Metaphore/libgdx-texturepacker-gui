@@ -212,7 +212,7 @@ public class PreviewHolder extends WidgetGroup {
 
     /** Draws fade outside of page (when  page is present) */
     private class OuterFade extends Widget {
-        private final Color COLOR_DIM = new Color(0x11112288);
+        private final Color COLOR_DIM = new Color(0x00000040);
 
         private final TextureRegion whiteTexture;
 
