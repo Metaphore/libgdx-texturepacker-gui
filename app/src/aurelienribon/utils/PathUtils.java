@@ -1,9 +1,13 @@
 package aurelienribon.utils;
 
-import java.io.File;
-import java.util.regex.Pattern;
 import org.apache.commons.io.FilenameUtils;
 
+import java.io.File;
+import java.util.regex.Pattern;
+
+/**
+ * @author Aurelien Ribon
+ */
 public class PathUtils {
 	/**
 	 * Removes every '"' character before and after the path, if any.

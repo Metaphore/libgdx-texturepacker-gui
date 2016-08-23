@@ -1,4 +1,4 @@
-package aurelienribon.utils.notifications;
+package aurelienribon.utils;
 
 public class CommonUtils {
     public static String fetchMessageStack(Throwable throwable) {

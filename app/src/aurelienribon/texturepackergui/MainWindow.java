@@ -541,7 +541,7 @@ public class MainWindow extends JFrame {
         jToolBar1.add(newPackBtn);
 
         renamePackBtn.setIcon(new ImageIcon(loadImage("gfx/ic_edit.png"))); // NOI18N
-        renamePackBtn.setToolTipText("Rename the selected pack");
+        renamePackBtn.setToolTipText("Rename selected pack");
         renamePackBtn.setFocusable(false);
         jToolBar1.add(renamePackBtn);
 

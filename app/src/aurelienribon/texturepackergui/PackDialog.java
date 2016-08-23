@@ -2,7 +2,7 @@ package aurelienribon.texturepackergui;
 
 import aurelienribon.ui.components.PaintedPanel;
 import aurelienribon.ui.css.Style;
-import aurelienribon.utils.notifications.CommonUtils;
+import aurelienribon.utils.CommonUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import org.apache.commons.io.IOUtils;
